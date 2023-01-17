@@ -1,8 +1,6 @@
 import os
 import csv
 
-print("Election Results")
-print("-------------------------")
 
 total_votes = 0
 candidate_raw_list = []
@@ -25,15 +23,23 @@ with open("Resources/election_data.csv") as data_file:
 #Alerts user to empty set
 if(total_votes == 0):
     print("Your data set is empty.")
-
+#writes csv file to PyPoll/analysis/voting_analysis.csv
+output_path = os.path.join("analysis", "voting_analysis.csv")
+with open(output_path, 'w') as csv_file:
+    csv_writer = csv.writer(csv_file, delimiter=',')
+    csv_writer.writerow(["Candidate", "Votes", "Total","Percentage", "Win/Loss"])
+    i = 0
+    for candidate in candidate_pool:
+        csv_writer.writerow([candidate, vote_pool[i], total_votes, '{:,.3%}'.format(vote_pool[i]/total_votes), "Win" if candidate == election_winner else "Lose"])
+        i += 1
+print("Election Results")
+print("-------------------------")
 print(f"Total Votes Cast: {total_votes}")
 print("-------------------------")
-#print(candidate_pool)
 i = 0
 for candidate in candidate_pool:
     vote_share_per_candidate = vote_pool[i]/total_votes
     print(f"{candidate}: {vote_share_per_candidate:,.3%} {vote_pool[i]}")
-
     i += 1
 print("-------------------------")
 print(f"Winner: {election_winner}")
