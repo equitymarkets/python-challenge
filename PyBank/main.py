@@ -1,3 +1,4 @@
+#imports python modules
 import csv
 import os
 
@@ -12,9 +13,9 @@ starter = False
 
 #Input Path is based upon running terminal session from PyBank/ folder. Adjust accordingly
 with open('Resources/budget_data.csv') as input_file:
-    #Set the reader
+    #Sets the reader
     csvreader = csv.reader(input_file)
-    #Skip the header row
+    #Skips the header row
     next(csvreader)
     #Determines months in set, extreme values, and PnL changes
     for row in csvreader:
