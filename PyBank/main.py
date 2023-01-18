@@ -48,7 +48,7 @@ output_path = os.path.join("analysis", "financial_analysis.csv")
 with open(output_path, 'w') as csv_file:
     csv_writer = csv.writer(csv_file, delimiter=',')
     csv_writer.writerow(["Total Months", "Total", "Average Change","Greatest Increase in Profits", "Greatest Decrease in Profits"])
-    csv_writer.writerow([total_months, total_profit, Average_PnL_change, (date_greatest_increase, greatest_increase), (date_greatest_decrease, greatest_decrease)])
+    csv_writer.writerow([total_months, '${:,.2f}'.format(total_profit), '${:,.2f}'.format(Average_PnL_change), (date_greatest_increase, '${:,.2f}'.format(greatest_increase)), (date_greatest_decrease, '${:,.2f}'.format(greatest_decrease))])
 
 #Terminal output = Total months of analysis (rows), Total (cumulative) profit, Average chcnge in profit or loss for each month, and extreme increase and decrease
 print("Financial Analysis")

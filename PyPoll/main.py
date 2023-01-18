@@ -31,14 +31,14 @@ with open("Resources/election_data.csv") as data_file:
 
 
 
-#writes csv file to PyPoll/analysis/voting_analysis.csv
+#writes csv file to PyPoll/analysis/voting_analysis.csv with votes for candidate, all votes, percentage, and winner
 output_path = os.path.join("analysis", "voting_analysis.csv")
 with open(output_path, 'w') as csv_file:
     csv_writer = csv.writer(csv_file, delimiter=',')
-    csv_writer.writerow(["Candidate", "Votes", "Total","Percentage", "Win/Loss"])
+    csv_writer.writerow(["Candidate", "Votes", "Total","Percentage", "Win/Lose"])
     i = 0
     for candidate in candidate_pool:
-        csv_writer.writerow([candidate, vote_pool[i], total_votes, '{:,.3%}'.format(vote_pool[i]/total_votes), "Win" if candidate == election_winner else "Lose"])
+        csv_writer.writerow([candidate, vote_pool[i], total_votes, '{:,.3%}'.format(vote_pool[i]/total_votes), "Winner" if candidate == election_winner else "Loser"])
         i += 1
 
 #Terminal output = total votes for anyone cast, votes per candidate, percentage for each, and winner. 
